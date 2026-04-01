@@ -1,0 +1,45 @@
+namespace A0401_08
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string[] stu = new string[] { "學生1","學生2","學生3" ,"學生4","學生5"};
+            string[] sub = new string[] { "國文", "英文", "數學", "總分", "平均" };
+            string[] sc = new string[5];
+            int[,] score = new int[5, 5];
+            int[] sum = new int[] {0,0,0,0,0};
+            int[] avg = new int[] {0,0,0,0,0};
+            for(int i = 0; i < stu.Length; i++)
+            {
+                sc[i] = Microsoft.VisualBasic.Interaction.InputBox("請輸入成績", "輸入");
+                string[] sc1 = sc[i].Split(',');
+                for(int j = 0; j < sc1.Length; j++)
+                {
+                    score[i,j] = int.Parse(sc1[j]);
+                    sum[i] += score[i,j];
+                }
+                score[i, 3] = sum[i];
+                score[i,4] = sum[i]/3;
+            }
+            textBox1.Text = "學生\t";
+            for(int i = 0;i < sub.GetLength(0); i++)
+            {
+                textBox1.Text += $"{sub[i]}\t";
+            }
+            for(int r = 0; r < score.GetLength(0); r++)
+            {
+                for(int c=0; c < score.GetLength(1); c++)
+                {
+
+                }
+            }
+            //textBox1.Text = $"{score[0,0]},{score[0,1]},{score[0,2]}";
+        }
+    }
+}
