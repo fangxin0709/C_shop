@@ -1,0 +1,94 @@
+//排名 分割字串 陣列 小數點後一位
+
+namespace A0401_08
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+        string[] stu = new string[] { "學生1", "學生2", "學生3", "學生4", "學生5" };
+        string[] sub = new string[] { "學生","國文", "英文", "數學", "總分", "平均" };
+        string[] sc = new string[5];
+        int[,] score = new int[5, 4];
+        int[] sum = new int[] { 0, 0, 0, 0, 0 };
+        double[] avg = new double[] { 0, 0, 0, 0, 0 };
+        int[] x = new int[] {0,1,2,3,4 };
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            for (int i = 0; i < stu.Length; i++)
+            {
+                sum[i] = 0;
+                sc[i] = Microsoft.VisualBasic.Interaction.InputBox("請輸入成績", "輸入");
+                string[] sc1 = sc[i].Split(',');
+                for (int j = 0; j < sc1.Length; j++)
+                {
+                    score[i, j] = int.Parse(sc1[j]);
+                    sum[i] += score[i, j];
+                }
+                score[i, 3] = sum[i];
+                avg[i] = sum[i] / 3.0;
+            }
+            for (int i = 0; i < sub.GetLength(0); i++)
+            {
+                textBox1.Text += $"{sub[i]}\t";
+            }
+            textBox1.Text += "\r\n";
+            for (int r = 0; r < score.GetLength(0); r++)
+            {
+                textBox1.Text += $"{stu[r]}\t";
+                for (int c = 0; c < score.GetLength(1); c++)
+                {
+                    textBox1.Text += $"{score[r, c]}\t";
+                }
+                textBox1.Text += $"{avg[r].ToString("f1")}";
+                textBox1.Text += "\r\n";
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < x.Length; i++)
+            {
+                x[i] = i;
+            }
+            for (int i = 0; i < score.GetLength(0)-1; i++)
+            {
+                int t = 0;
+                for (int j = 0; j < score.GetLength(0) - 1; j++)
+                {
+                    if (score[x[j], 3] < score[x[j + 1], 3])
+                    {
+                        t = x[j+1];
+                        x[j+1] = x[j];
+                        x[j] = t;
+                    }
+                }
+            }
+            textBox1.Text = "名次\t";
+            for (int i = 0; i < sub.GetLength(0); i++)
+            {
+                textBox1.Text += $"{sub[i]}\t";
+            }
+            textBox1.Text += "\r\n";
+            for (int r = 0; r < score.GetLength(0); r++)
+            {
+                textBox1.Text += $"{r + 1}\t";
+                textBox1.Text += $"{stu[x[r]]}\t";
+                for (int c = 0; c < score.GetLength(1); c++)
+                {
+                    textBox1.Text += $"{score[x[r], c]}\t";
+                }
+                textBox1.Text += $"{avg[x[r]].ToString("f1")}";
+                textBox1.Text += "\r\n";
+            }
+        }
+    }
+}
