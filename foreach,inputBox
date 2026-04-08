@@ -1,3 +1,5 @@
+//foeach用法 input,msgbox
+
 namespace WinFormsApp1
 {
     public partial class Form1 : Form
