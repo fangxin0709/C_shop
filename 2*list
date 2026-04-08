@@ -1,3 +1,5 @@
+//表格顯示 二維陣列
+
 namespace WinFormsApp3
 {
     public partial class Form1 : Form
