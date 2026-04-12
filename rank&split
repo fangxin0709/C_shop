@@ -59,19 +59,20 @@ namespace A0401_08
             {
                 x[i] = i;
             }
-            for (int i = 0; i < score.GetLength(0)-1; i++)
-            {
-                int t = 0;
-                for (int j = 0; j < score.GetLength(0) - 1; j++)
-                {
-                    if (score[x[j], 3] < score[x[j + 1], 3])
-                    {
-                        t = x[j+1];
-                        x[j+1] = x[j];
-                        x[j] = t;
-                    }
-                }
-            }
+            //for (int i = 0; i < score.GetLength(0)-1; i++)
+            //{
+            //    int t = 0;
+            //    for (int j = 0; j < score.GetLength(0) - 1; j++)
+            //    {
+            //        if (score[x[j], 3] < score[x[j + 1], 3])
+            //        {
+            //            t = x[j+1];
+            //            x[j+1] = x[j];
+            //            x[j] = t;
+            //        }
+            //    }
+            //}
+            Array.Sort(sum, x);
             textBox1.Text = "名次\t";
             for (int i = 0; i < sub.GetLength(0); i++)
             {
@@ -92,3 +93,4 @@ namespace A0401_08
         }
     }
 }
+
